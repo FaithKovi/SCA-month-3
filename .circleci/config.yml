@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker
+     
     
       - deploy:
           name: Start docker compose

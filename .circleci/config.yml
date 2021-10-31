@@ -41,6 +41,8 @@ jobs:
 
   docker_compose:
     environment:
+    machine: true
+
     steps:
       - checkout
       - setup_remote_docker

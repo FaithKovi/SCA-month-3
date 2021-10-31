@@ -1,0 +1,22 @@
+version: "3"
+services:
+
+  server:  #container name
+    image: faithkovi/t24-client:v1 #Image name
+    ports:
+      - 8000:8000 # ports(host:container)
+
+  client:  #container name
+    image: faithkovi/t24-server:v1 #Image name
+    ports:
+      - 8080:8080 # ports(host:container)
+
+
+  mongodb:
+    container_name: mongo-con
+    image: mongo:latest
+    ports:
+      - "27007:27017"
+    environment:
+      - MONGODB_CONNSTRING= 'mongodb+srv://dbtest:test1234@cluster0.ppfwj.mongodb.net/dbtest?retryWrites=true&w=majority'
+

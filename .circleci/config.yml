@@ -24,7 +24,7 @@ jobs:
       IMAGE_NAME: faithkovi/t24-client
     docker:
     # circleci node image that contains binaries and tools required for the build.
-      - image: cimg/node:14.8.0-alpine3.12
+      - image: cimg/node:14.8.0
 
     steps:
     # This allocates a new docker engine that is separate from the environment that is running our job.

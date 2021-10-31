@@ -1,4 +1,4 @@
 module.exports = {
-    MONGO_URI: 'mongodb+srv://ben:bWUMfPkh7HhZl7hg@admin0.tgikc.mongodb.net/student-admin?retryWrites=true&w=majority',
+    MONGO_URI: 'mongodb+srv://dbtest:test1234@cluster0.ppfwj.mongodb.net/dbtest?retryWrites=true&w=majority',
     JWT_SECRET: "bWUMfPkh7HhZl7hg"
 }

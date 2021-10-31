@@ -1,0 +1,51 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/define_vars.yml 
+
+  tasks:
+    - name: Update apt package index
+      command: sudo apt-get update
+
+    - name: Remove older docker versions if present
+      apt:
+        pkg: '{{item}}'
+        state: absent
+      with_items:
+        - docker
+        - docker-engine
+
+      # This install packages that allow apt to use a repository over HTTPS
+    - name: Install packages
+      apt:
+        name: "{{ package1 }}"
+        state: present
+        update_cache: yes
+
+    - name: Adding Docker official GPG Key
+      shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
+
+    - name: Add Docker stable repository.
+      shell: 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+
+    - name: Override the source
+      shell: 'printf "%s\n" "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" | sudo tee /etc/apt/sources.list.d/docker.list'
+
+    - name: Upgrade apt
+      command: sudo apt-get update
+
+    - name: Installing Docker
+      apt:
+        name: "{{ package2 }}"
+        state: present
+        update_cache: yes
+    
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+
+

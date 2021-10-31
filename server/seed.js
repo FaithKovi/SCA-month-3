@@ -10,18 +10,17 @@
 //         useUnifiedTopology: true
 //     })
 //     .then(() => {
-//         // Ensure MongoDB Connection is successful
+         // Ensure MongoDB Connection is successful
 //         const connectionState = mongoose.connection.readyState;
 //         if (connectionState === 1) {
 //             console.log('MongoDB Connected');
 //         } else {
 //             console.log('MongoDB Failed to connect');
-//         }
 //     })
 //     .catch((err) => {
 //         console.log(err)
 //     });
-
+//
 // const seedStudents = () => {
 //     const quantity = 10;
 //     const students = [];
@@ -95,3 +94,4 @@
 
 // seedStudents();
 // seedCourses();
+console.log("seeded")

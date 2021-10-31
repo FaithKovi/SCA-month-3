@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
-const SEED = require('./seed');
+// const SEED = require('./seed');
 const keys = require("./config/keys");
 // initialize morgan
 app.use(morgan('dev'));

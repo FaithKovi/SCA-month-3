@@ -1,0 +1,14 @@
+package1: [
+    apt-transport-https,
+    ca-certificates,
+    curl,
+    software-properties-common,
+    gnupg,
+    lsb-release
+]
+package2: [
+    docker-ce,
+    docker-ce-cli,
+    containerd.io
+]
+docker_compose_version: 1.29.1

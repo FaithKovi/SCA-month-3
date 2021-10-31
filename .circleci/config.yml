@@ -1,7 +1,6 @@
 version: 2
 jobs:
   docker_backend_build:
-    working_directory: /server
     environment:
       IMAGE_NAME: faithkovi/t24-server
     docker:
@@ -13,13 +12,14 @@ jobs:
       - checkout
       - setup_remote_docker
       - deploy:
-          name: Push to docker hub
+          name: Build and Push to docker hub
           command: |
+            cd server/
+            docker build -t $IMAGE_NAME:v1 .
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker image push $IMAGE_NAME:v1
 
   docker_frontend_build:
-    working_directory: /client
     environment:
       IMAGE_NAME: faithkovi/t24-client
     docker:
@@ -32,8 +32,10 @@ jobs:
       - setup_remote_docker
 
       - deploy:
-          name: Push to docker hub
+          name: Build and Push to docker hub
           command: |
+            cd client/
+            docker build -t $IMAGE_NAME:v1 .
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker image push $IMAGE_NAME:v1
 
